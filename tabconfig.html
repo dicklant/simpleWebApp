@@ -6,10 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://res.cdn.office.net/teams-js/2.2.0/js/MicrosoftTeams.min.js"
-    integrity="sha384yBjE++eHeBPzIg+IKl9OHFqMbSdrzY2S/LW3qeitc5vqXewEYRWegByWzBN/chRh" 
-    crossorigin="anonymous">
-    </script>
+  <script src="https://res.cdn.office.net/teams-js/2.2.0/js/MicrosoftTeams.min.js" crossorigin="anonymous">
+  </script>
 </head>
 
 <body>
@@ -22,10 +20,11 @@
 <script>
 
   document.getElementById("inputText").value = "Before initialize";
-  await microsoftTeams.app.initialize();
+  //await microsoftTeams.app.initialize();
 
   let setConfig = () => {
     document.getElementById("myLabel").value = "Called";
+    /*
     microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
     const configPromise = pages.config.setConfig({
       websiteUrl: "https://simplewebappservice.azurewebsites.net",
@@ -36,7 +35,8 @@
     configPromise.
       then((result) => { saveEvent.notifySuccess() }).
       catch((error) => { saveEvent.notifyFailure("failure message") });
-  });  
+  
+  }); */
   }
 
 </script>

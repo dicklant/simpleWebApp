@@ -9,6 +9,8 @@
 
 <body>
     <h1>Tab Config</h1>
+    <p>Ton nom :</p>
+    <input></input>
 </body>
 <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"
 integrity="sha384-QtTBFeFlfRDZBfwHJHYQp7MdLJ2C3sfAEB1Qpy+YblvjavBye+q87TELpTnvlXw4"
@@ -18,7 +20,15 @@ crossorigin="anonymous">
 
     await microsoftTeams.app.initialize();
 
-    pages.config.registerOnSaveHandler((saveEvent) => {
+      /**
+       * After verifying that the settings for your tab are correctly
+       * filled in by the user you need to set the state of the dialog
+       * to be valid.  This will enable the save button in the configuration
+       * dialog.
+       */
+      pages.config.setValidityState(true);
+
+      pages.config.registerOnSaveHandler((saveEvent) => {
         const baseUrl = `https://simplewebappservice.azurewebsites.net`;
         pages.config.setConfig({
           suggestedDisplayName: "My Tab",
@@ -30,13 +40,6 @@ crossorigin="anonymous">
         });
       });
 
-      /**
-       * After verifying that the settings for your tab are correctly
-       * filled in by the user you need to set the state of the dialog
-       * to be valid.  This will enable the save button in the configuration
-       * dialog.
-       */
-      pages.config.setValidityState(true);
 
 </script>
 </html>

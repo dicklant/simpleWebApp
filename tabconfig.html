@@ -11,15 +11,16 @@
     <h1>Tab Config</h1>
 </body>
 <script>
-    import { app, pages } from "@microsoft/teams-js";
+  
+    import { app, pages } from "https://statics.teams.cdn.office.net/sdk/v1.8.0/js/MicrosoftTeams.min.js";
 
     pages.config.registerOnSaveHandler((saveEvent) => {
         const baseUrl = `https://${window.location.hostname}:${window.location.port}`;
         pages.config.setConfig({
           suggestedDisplayName: "My Tab",
           entityId: "Test",
-          contentUrl: baseUrl + "/index.html#/tab",
-          websiteUrl: baseUrl + "/index.html#/tab",
+          contentUrl: baseUrl + "/tab.html",
+          websiteUrl: baseUrl + "/tab.html",
         }).then(() => {
           saveEvent.notifySuccess();
         });
@@ -32,7 +33,6 @@
        * dialog.
        */
       pages.config.setValidityState(true);
-
 
 </script>
 </html>

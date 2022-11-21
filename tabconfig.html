@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://res.cdn.office.net/teams-js/2.2.0/js/MicrosoftTeams.min.js"
+    integrity="sha384yBjE++eHeBPzIg+IKl9OHFqMbSdrzY2S/LW3qeitc5vqXewEYRWegByWzBN/chRh" 
+    crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
-    <h1>Tab Config</h1>
-    <p>Ton nom :</p>
-    <input></input>
+  <h1>Tab Config</h1>
+  <p>Ton nom :</p>
+  <input></input>
+  <button>Select Red</button>
 </body>
-<script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"
-integrity="sha384-QtTBFeFlfRDZBfwHJHYQp7MdLJ2C3sfAEB1Qpy+YblvjavBye+q87TELpTnvlXw4"
-crossorigin="anonymous">
-  
-    //import { app, pages } from "MicrosoftTeams";
+<script>
+  await microsoftTeams.app.initialize();
 
-    await microsoftTeams.app.initialize();
-
-      /**
-       * After verifying that the settings for your tab are correctly
-       * filled in by the user you need to set the state of the dialog
-       * to be valid.  This will enable the save button in the configuration
-       * dialog.
-       */
-      pages.config.setValidityState(true);
-
-      pages.config.registerOnSaveHandler((saveEvent) => {
-        const baseUrl = `https://simplewebappservice.azurewebsites.net`;
-        pages.config.setConfig({
-          suggestedDisplayName: "My Tab",
-          entityId: "Test",
-          contentUrl: "https://simplewebappservice.azurewebsites.net/tab.html",
-          websiteUrl: "https://simplewebappservice.azurewebsites.net",
-        }).then(() => {
-          saveEvent.notifySuccess();
-        });
-      });
-
-
+  microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+    const configPromise = pages.config.setConfig({
+      websiteUrl: "https://simplewebappservice.azurewebsites.net",
+      contentUrl: "https://simplewebappservice.azurewebsites.net/tab.html",
+      entityId: "Test",
+      suggestedDisplayName: "MyNewTab"
+    });
+    configPromise.
+      then((result) => { saveEvent.notifySuccess() }).
+      catch((error) => { saveEvent.notifyFailure("failure message") });
+  });  
 </script>
+
 </html>

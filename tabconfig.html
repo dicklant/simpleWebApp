@@ -14,15 +14,17 @@
 integrity="sha384-QtTBFeFlfRDZBfwHJHYQp7MdLJ2C3sfAEB1Qpy+YblvjavBye+q87TELpTnvlXw4"
 crossorigin="anonymous">
   
-    import { app, pages } from "MicrosoftTeams";
+    //import { app, pages } from "MicrosoftTeams";
+
+    await microsoftTeams.app.initialize();
 
     pages.config.registerOnSaveHandler((saveEvent) => {
         const baseUrl = `https://simplewebappservice.azurewebsites.net`;
         pages.config.setConfig({
           suggestedDisplayName: "My Tab",
           entityId: "Test",
-          contentUrl: baseUrl + "/tab.html",
-          websiteUrl: baseUrl + "/tab.html",
+          contentUrl: "https://simplewebappservice.azurewebsites.net/tab.html",
+          websiteUrl: "https://simplewebappservice.azurewebsites.net",
         }).then(() => {
           saveEvent.notifySuccess();
         });

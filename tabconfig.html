@@ -20,7 +20,7 @@
 <script>
 
   document.getElementById("inputText").value = "Before initialize";
-  await microsoftTeams.app.initialize();
+  microsoftTeams.app.initialize();
   document.getElementById("inputText").value = "After initialize";
 
   let setConfig = () => {

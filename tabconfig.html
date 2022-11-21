@@ -16,12 +16,13 @@
   <h1>Tab Config</h1>
   <p>Ton nom :</p>
   <input></input>
-  <button>Select Red</button>
+  <button onclick="setConfig()">Select Red</button>
 </body>
 <script>
   await microsoftTeams.app.initialize();
 
-  microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+  let setConfig = () => {
+    microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
     const configPromise = pages.config.setConfig({
       websiteUrl: "https://simplewebappservice.azurewebsites.net",
       contentUrl: "https://simplewebappservice.azurewebsites.net/tab.html",
@@ -32,6 +33,8 @@
       then((result) => { saveEvent.notifySuccess() }).
       catch((error) => { saveEvent.notifyFailure("failure message") });
   });  
+  }
+
 </script>
 
 </html>

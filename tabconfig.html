@@ -29,6 +29,11 @@
 
     document.getElementById("inputText").value = "After initialize";
 
+    microsoftTeams.app.getContext().then((context) => { 
+      document.getElementById("inputText").value = context.theme;  
+    });
+
+
     microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
       microsoftTeams.pages.config.setConfig({
         suggestedDisplayName: "My Tab",

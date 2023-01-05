@@ -13,12 +13,18 @@
 
 <body>
   <h1>Tab Config</h1>
-  <p>Ton nom :</p>
+  <p>Titre de l'onglet :</p>
   <p id="myLabel"></p>
+  <input type="text" id="inputText"></input>
+  <p>Lien de l'invitation :</p>
+  <p id="mySessionLink"></p>
   <input type="text" id="inputText"></input>
   <button onclick="setConfig()">Select Red</button>
 </body>
 <script>
+  const tabName = document.getElementById("myLabel").value;
+  const sessionLink = document.getElementById("mySessionLink").value;
+
   document.getElementById("inputText").value = "Before initialize";
 
   let setConfig = () => {
@@ -34,7 +40,7 @@
     });
 
 
-    microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+/*     microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
       microsoftTeams.pages.config.setConfig({
         suggestedDisplayName: "My Tab",
         entityId: "Test",
@@ -44,6 +50,19 @@
         saveEvent.notifySuccess();
       });
     });
+     */
+
+     microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+      microsoftTeams.pages.config.setConfig({
+        suggestedDisplayName: {tabName},
+        entityId: "Test",
+        contentUrl: {sessionLink},
+        websiteUrl: "https://yellowintegration.azurewebsites.net",
+      }).then(() => {
+        saveEvent.notifySuccess();
+      });
+    });
+    
 
     microsoftTeams.pages.config.setValidityState(true);
   });

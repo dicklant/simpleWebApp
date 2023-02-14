@@ -15,25 +15,20 @@
   <h1>Configuration Yellow</h1>
   <p>Titre :</p>
   <p id="myLabel"></p>
-  <input type="text" id="inputText"></input>
+  <input type="text" id="idTabName"></input>
   <p>Code de réunion :</p>
   <p id="mySessionLink"></p>
-  <input type="text" id="inputText"></input>
-  <button onclick="setConfig()">Select Red</button>
+  <input type="text" id="idSessionCode"></input>
 </body>
 <script>
-  const tabName = document.getElementById("myLabel").value;
-  const sessionLink = document.getElementById("mySessionLink").value;
+  const tabName = document.getElementById("idTabName").value;
+  const sessionCode = document.getElementById("idSessionCode").value;
 
-  document.getElementById("inputText").value = "Before initialize";
-
-  let setConfig = () => {
-    document.getElementById("myLabel").innerText = "Called";
-  }
+  document.getElementById("inputText").value = "nom de l'onglet";
 
   microsoftTeams.app.initialize().then(() => {
 
-    document.getElementById("inputText").value = "After initialize";
+    //document.getElementById("inputText").value = "After initialize";
 
     microsoftTeams.app.getContext().then((context) => { 
       document.getElementById("inputText").value = context.theme;  
@@ -55,8 +50,8 @@
      microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
       microsoftTeams.pages.config.setConfig({
         suggestedDisplayName: {tabName},
-        entityId: "Test",
-        contentUrl: "https://yellowintegration.azurewebsites.net/Whiteboard/"+{sessionLink},
+        entityId: "Yellow",
+        contentUrl: "https://yellowintegration.azurewebsites.net/Whiteboard/"+{sessionCode},
         websiteUrl: "https://yellowintegration.azurewebsites.net",
       }).then(() => {
         saveEvent.notifySuccess();

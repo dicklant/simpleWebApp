@@ -12,11 +12,11 @@
 </head>
 
 <body>
-  <h1>Tab Config</h1>
-  <p>Titre de l'onglet :</p>
+  <h1>Configuration Yellow</h1>
+  <p>Titre :</p>
   <p id="myLabel"></p>
   <input type="text" id="inputText"></input>
-  <p>Lien de l'invitation :</p>
+  <p>Code de réunion :</p>
   <p id="mySessionLink"></p>
   <input type="text" id="inputText"></input>
   <button onclick="setConfig()">Select Red</button>
@@ -56,7 +56,7 @@
       microsoftTeams.pages.config.setConfig({
         suggestedDisplayName: {tabName},
         entityId: "Test",
-        contentUrl: {sessionLink},
+        contentUrl: "https://yellowintegration.azurewebsites.net/Whiteboard/"+{sessionLink},
         websiteUrl: "https://yellowintegration.azurewebsites.net",
       }).then(() => {
         saveEvent.notifySuccess();
